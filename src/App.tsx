@@ -1,65 +1,40 @@
-import { useState } from "react";
 import "./App.css";
-
-interface Task {
-  id: string;
-  title: string;
-}
+import { useEffect, useState } from "react";
+import { Home } from "./pages/home";
+import { Board } from "./components/board";
 
 function App() {
-  const [title, setTitle] = useState("");
-  const [query, setQuery] = useState("");
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [dataHora, setDataHora] = useState("");
 
-  const filteredTasks: Task[] = tasks.filter((task) => {
-    return task.title.includes(query);
-  });
-
-  function handleChange(text: string) {
-    console.log(text);
-    setTitle(text);
+  function atualizarDataEHora() {
+    const dataAtual = new Date();
+    const dataFormatada = dataAtual.toLocaleDateString();
+    const horaFormatada = dataAtual.toLocaleTimeString();
+    const dataHoraFormatada = `${dataFormatada} ${horaFormatada}`;
+    setDataHora(dataHoraFormatada);
   }
 
-  function addTask() {
-    const newTask: Task = {
-      id: Math.floor(Math.random() * 1001).toString(),
-      title,
-    };
+  useEffect(() => {
+    const setIntervalId = setInterval(atualizarDataEHora, 1000);
 
-    setTasks((prevState) => [...prevState, newTask]);
-
-    console.log(tasks);
-  }
-
-  function handleChangeSearch(query: string) {
-    setQuery(query);
-  }
+    return () => clearInterval(setIntervalId);
+  }, []);
 
   return (
-    <>
-      <input
-        onChange={(e) => handleChange(e.target.value)}
-        value={title}
-        type="text"
-        placeholder="escreva"
-      />
+    <div className="App">
+      <h1>Just do it.</h1>
 
-      <input
-        onChange={(e) => handleChangeSearch(e.target.value)}
-        value={query}
-        type="text"
-        placeholder="escreva sua pesquisa"
-      />
+      <input type="text" placeholder="Add a task" />
 
-      <button type="button" onClick={addTask}>
-        add task
-      </button>
-      <ul>
-        {(filteredTasks.length != 0 ? filteredTasks : tasks).map((task) => {
-          return <li key={task.id}>{task.title}</li>;
-        })}
-      </ul>
-    </>
+      <div id="data-hora">
+        <span>{dataHora}</span>
+      </div>
+
+      <div id="lista">
+       <Home />
+       <Board />
+      </div>
+    </div>
   );
 }
 

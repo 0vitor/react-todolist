@@ -1,7 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { Home } from "./pages/home";
-import { Board } from "./components/board";
 
 function App() {
   const [dataHora, setDataHora] = useState("");
@@ -32,7 +31,6 @@ function App() {
 
       <div id="lista">
        <Home />
-       <Board />
       </div>
     </div>
   );

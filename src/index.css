@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #b9aee2;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,14 +56,47 @@ button:focus-visible {
 }
 
 .board {
+  width: 1000px;
+  height: 500px;
   display: flex;
+  justify-content: space-between;
 }
 
 .todo {
-  background-color: #535bf2;
+  width: 25%;
+  height: 80%;
+}
+
+.title-todo {
+  color: white;
+  border-radius: 10px;
+  background-color: #6b6b6b;
+}
+
+.todo-list {
+  border-radius: 15px;
+  height: 100%;
+}
+
+.in-progress {
+  color: black;
+  width: 25%;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.done {
+  color: black;
+  width: 25%;
+  border-radius: 15px;
+  background-color: white;
 }
 
 .task {
+  color: black;
+  background-color: #e8d0f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 

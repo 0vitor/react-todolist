@@ -78,30 +78,38 @@ function Board() {
 
   return (
     <main className="board">
-      <div
-        data-column="todo"
-        onDragEnter={dragEnter}
-        onDragLeave={dragLeave}
-        onDragOver={allowDrop}
-        onDrop={(event) => drop(event, "todo")}
-      >
-        <h2>todo</h2>
-        {tasks
-          .filter((card) => card.state === "todo")
-          .map((todoCard) => (
-            <article
-              key={todoCard.id}
-              className="task"
-              draggable="true"
-              onDragStart={(event) => drag(event, todoCard.id)}
-              data-id={todoCard.id}
-            >
-              <h3>{todoCard.name}</h3>
-              <p>{todoCard.description}</p>
-            </article>
-          ))}
-      </div>
 
+      <div className="todo">
+        <div className="title-todo">
+          <h2>todo</h2>
+        </div>
+
+        <div
+          className="todo-list"
+          data-column="todo"
+          onDragEnter={dragEnter}
+          onDragLeave={dragLeave}
+          onDragOver={allowDrop}
+          onDrop={(event) => drop(event, "todo")}
+        >
+
+          {tasks
+            .filter((card) => card.state === "todo")
+            .map((todoCard) => (
+              <article
+                key={todoCard.id}
+                className="task"
+                draggable="true"
+                onDragStart={(event) => drag(event, todoCard.id)}
+                data-id={todoCard.id}
+              >
+                <h3>{todoCard.name}</h3>
+                <p>{todoCard.description}</p>
+              </article>
+            ))}
+        </div>
+
+      </div>
       <div
         className="in-progress"
         onDragEnter={dragEnter}
@@ -109,7 +117,10 @@ function Board() {
         onDragOver={allowDrop}
         onDrop={(event) => drop(event, "in progress")}
       >
-        <h2>in progress</h2>
+        <div className="title-done">
+          <h2>in progress</h2>
+        </div>
+
         {tasks
           .filter((card) => card.state === "in progress")
           .map((todoCard) => (
@@ -133,7 +144,9 @@ function Board() {
         onDragOver={allowDrop}
         onDrop={(event) => drop(event, "done")}
       >
-        <h2>done</h2>
+        <div className="title-done">
+          <h2>done</h2>
+        </div>
         {tasks
           .filter((card) => card.state === "done")
           .map((todoCard) => (

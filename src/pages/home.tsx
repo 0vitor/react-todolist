@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Board } from "../components/board";
 
 interface Task {
   id: string;
@@ -64,6 +65,8 @@ function Home() {
           );
         })}
       </ul>
+
+      <Board />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Board } from '../components/ListTasks';
 import { CreateTask } from '../components/CreateTask';
 import { Task } from '../interfaces/Task';
+import { ListTasks } from '../components/ListTasks';
 
 function Home() {
   const [query, setQuery] = useState('');
@@ -26,7 +26,7 @@ function Home() {
       />
 
       <CreateTask tasks={tasks} setTasks={setTasks}/>
-      <Board tasks={tasks} setTasks={setTasks}/>
+      <ListTasks tasks={tasks} setTasks={setTasks}/>
     </div>
   );
 }

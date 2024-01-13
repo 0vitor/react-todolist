@@ -16,7 +16,7 @@ function Home() {
   }
 
   return (
-    <div className='flex flex-row'>
+    <div className=''>
 
       <input
         onChange={(e) => handleChangeSearch(e.target.value)}

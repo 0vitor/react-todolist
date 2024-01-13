@@ -1,29 +1,12 @@
-import { DragEvent, useEffect, useState } from "react";
+import { DragEvent, useEffect } from "react";
 import { Task } from "../interfaces/Task";
 
-const initialTasks: Task[] = [
-  {
-    id: "1",
-    name: "Tarefa 1",
-    state: "todo",
-    description: "Descrição da Tarefa 1",
-  },
-  {
-    id: "2",
-    name: "Tarefa 2",
-    state: "in progress",
-    description: "Descrição da Tarefa 2",
-  },
-  {
-    id: "3",
-    name: "Tarefa 3",
-    state: "done",
-    description: "Descrição da Tarefa 3",
-  },
-  // Adicione mais objetos Task conforme necessário
-];
-function Board() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+interface taskMethods {
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
+function ListTasks({tasks, setTasks}: taskMethods) {
 
   const dragStart = (event) => {
     if (event.target.className.includes("card")) {
@@ -77,8 +60,7 @@ function Board() {
   };
 
   return (
-    <main className="board">
-
+      <>
       <div className="todo">
         <div className="title-todo">
           <h2>todo</h2>
@@ -162,8 +144,8 @@ function Board() {
             </article>
           ))}
       </div>
-    </main>
+      </>
   );
 }
 
-export { Board };
+export { ListTasks };
